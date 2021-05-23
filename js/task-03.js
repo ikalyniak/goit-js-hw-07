@@ -37,7 +37,16 @@ galleryRef.style.alignItems = 'center';
 
 
 //function for creating markup
-const createMarkup = array => array.map(item => `<li><img src='${item.url}' alt='${item.alt}' width='300'/></li>`);
-const items = createMarkup(images);
-galleryRef.insertAdjacentHTML('afterbegin', items.join(''));
 
+// ---1st option solution---
+// const createMarkup = array => array.map(item => `<li><img src='${item.url}' alt='${item.alt}' width='300'/></li>`);
+// const items = createMarkup(images);
+// galleryRef.insertAdjacentHTML('afterbegin', items.join(''));
+
+// ---2nd option solution---
+const createMarkup = array => array.reduce(
+  (string, item) => string + `<li><img src='${item.url}' alt='${item.alt}' width='300'/></li>`,
+  ""
+);
+const items = createMarkup(images);
+galleryRef.insertAdjacentHTML('afterbegin', items);
